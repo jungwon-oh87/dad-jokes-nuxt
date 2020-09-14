@@ -1,9 +1,23 @@
 <template>
-  <div>Jokes</div>
+  <div>
+    <h1>Jokes</h1>
+    <Joke v-for="joke in jokes" :key="joke.id" />
+  </div>
 </template>
 
 <script>
+import axios from "axios";
+import Joke from "../../components/Joke";
+
 export default {
+  components: {
+    Joke
+  },
+  data() {
+    return {
+      jokes: []
+    };
+  },
   head() {
     return {
       title: "Dad Jokes",
@@ -13,13 +27,31 @@ export default {
         {
           hid: "Daddy jokes collection",
           name: "description",
-          content: "Daddy jokes collection",
-        },
-      ],
+          content: "Daddy jokes collection"
+        }
+      ]
     };
   },
+  methods: {
+    async fetchApi() {
+      try {
+        const res = await axios.get("https://icanhazdadjoke.com/search", {
+          headers: {
+            Accept: "application/json"
+          }
+        });
+        console.log("res.data: ", res.data);
+        this.jokes = res.data.results;
+        console.log("jokes data: ", this.jokes);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  },
+  created() {
+    this.fetchApi();
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>
