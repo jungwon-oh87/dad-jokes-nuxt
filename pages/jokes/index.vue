@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Jokes</h1>
-    <Joke v-for="joke in jokes" :key="joke.id" />
+    <Joke v-for="joke in jokes" :key="joke.id" :joke="joke.joke" />
   </div>
 </template>
 
