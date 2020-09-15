@@ -17,13 +17,12 @@ export default {
         {
           hid: "Daddy jokes collection",
           name: "description",
-          content: "Daddy jokes collection",
-        },
-      ],
+          content: "Daddy jokes collection"
+        }
+      ]
     };
-  },
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>
